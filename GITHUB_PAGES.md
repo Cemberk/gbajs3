@@ -21,7 +21,9 @@ The repository is configured to automatically deploy the WASM GBA emulator to Gi
 The deployment workflow is defined in `.github/workflows/deploy-pages.workflow.yml` and will:
 - Automatically trigger on pushes to the `master` branch
 - Can also be manually triggered via `workflow_dispatch`
-- Build the project using the `build:with-coi-serviceworker` script
+- Uses a two-job approach:
+  - **Build job**: Checks out code, installs dependencies, builds the project using `build:with-coi-serviceworker`, and uploads the artifact
+  - **Deploy job**: Deploys the artifact to GitHub Pages using the official `actions/deploy-pages` action
 - Deploy the built files from `gbajs3/dist` to GitHub Pages
 
 ### 3. Base Path Configuration
