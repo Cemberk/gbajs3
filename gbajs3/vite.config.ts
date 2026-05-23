@@ -11,9 +11,12 @@ import { coverageConfigDefaults } from 'vitest/config';
 // eslint-disable-next-line import/no-default-export
 export default defineConfig(({ mode }) => {
   const withCOIServiceWorker = mode === 'with-coi-serviceworker';
+  
+  // Use repository name as base for GitHub Pages, or relative path otherwise
+  const base = process.env.GITHUB_PAGES === 'true' ? '/gbajs3/' : './';
 
   return {
-    base: './',
+    base,
     plugins: [
       react({
         plugins: [

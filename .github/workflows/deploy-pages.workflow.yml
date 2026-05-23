@@ -1,6 +1,9 @@
-name: Deploy Staging
+name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
@@ -26,3 +29,4 @@ jobs:
           build_command: npm run build:with-coi-serviceworker
         env:
           VITE_GBA_RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
+          GITHUB_PAGES: 'true'
